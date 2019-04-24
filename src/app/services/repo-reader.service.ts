@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,12 @@ export class RepoReaderService {
 
   constructor(private http: HttpClient) { }
 
-  public getRepositories(user): any {
+  public getRepositories(user): Observable<any> {
 
     let req_headers = new HttpHeaders();
     req_headers.set('userTimeZone', this.offset.toString());
 
-    this.http.get(`${this.apiUrl}/api/v1/getRepos/${user}`,
+    return this.http.get(`${this.apiUrl}/api/v1/getRepos/${user}`,
       { headers: req_headers }
     );
 

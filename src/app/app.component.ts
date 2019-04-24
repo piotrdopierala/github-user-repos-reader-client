@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RepoReaderService } from './services/repo-reader.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'repo-reader-client';
+  title = 'GitHub repositories reader';
+   constructor(private repositoryReaderServcie : RepoReaderService){
+   }
+
+  ngOnInit(){
+    console.log('in init of app component ...');
+    this.getRepositoriesList();
+  }
+
+  getRepositoriesList(){
+    console.log('in getRepositoriesList ...')
+    this.repositoryReaderServcie.getRepositories('piotrdopierala').subscribe((value)=>{console.log('Received value: ',value)});
+  }
 }
