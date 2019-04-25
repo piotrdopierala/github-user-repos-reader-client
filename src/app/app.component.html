@@ -3,13 +3,18 @@
   Piotr Dopierała '2019
 </div>
 <div class="container col-6 p-3 mb-2 bg-dark text-white rounded-lg text-center">
-  <form>
+  <form [formGroup]="userFrom">
     <div>
       <label for="gihubUserNameInput">GitHub user: </label>
-      <input type="text" id="gihubUserNameInput">
+      <input type="text" id="gihubUserNameInput" placeholder="GitHub user" formControlName="gitHubUser" required>
     </div>
     <button type="submit" class="btn btn-primary mt-2">show repos</button>
   </form>
 </div>
+<div class="alert alert-danger text-center" role="alert" *ngIf="hasErrors" id="alert">
+  Something went wrong. Check user name and try again.
+</div>
+
+<app-repositories-list *ngIf="repositories" [repositories]="repositories"></app-repositories-list>
 
 <router-outlet></router-outlet>

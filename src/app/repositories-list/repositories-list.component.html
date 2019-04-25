@@ -1,3 +1,14 @@
-<p>
-  repositories-list works!
-</p>
+<div class="container col-10 p-3 mb-2 bg-dark text-white rounded-lg text-center">
+    Repozytoria:
+    <div>
+      <ul>
+        <li *ngFor="let repo of repositories; let i=index">
+          <div class="text-left">
+            <a  target="_blank" href="{{repo.url}}">{{repo.name}}</a><br>
+            {{repo.description}}<br>
+            {{repo.createdAt | date:'medium'}}<br>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>

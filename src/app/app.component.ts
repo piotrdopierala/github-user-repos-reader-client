@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RepoReaderService } from './services/repo-reader.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Repository } from './models/Repository';
 
 @Component({
   selector: 'app-root',
@@ -8,16 +10,27 @@ import { RepoReaderService } from './services/repo-reader.service';
 })
 export class AppComponent {
   title = 'GitHub repositories reader';
-   constructor(private repositoryReaderServcie : RepoReaderService){
-   }
+  userFrom: FormGroup;
+  hasErrors: boolean = false;
+  repositories : Repository[];
 
-  ngOnInit(){
-    console.log('in init of app component ...');
+  constructor(private repositoryReaderServcie: RepoReaderService) {
+  }
+
+  ngOnInit() {
+    this.userFrom = new FormGroup({
+      gitHubUser: new FormControl('')
+    });
     this.getRepositoriesList();
   }
 
-  getRepositoriesList(){
+  getRepositoriesList() {
     console.log('in getRepositoriesList ...')
-    this.repositoryReaderServcie.getRepositories('piotrdopierala').subscribe((value)=>{console.log('Received value: ',value)});
+    this.hasErrors=false;
+    this.repositoryReaderServcie.getRepositories('piotrdopierala')
+      .subscribe(value => {        
+        this.repositories = value;
+      }, err => this.hasErrors = true
+      );      
   }
 }

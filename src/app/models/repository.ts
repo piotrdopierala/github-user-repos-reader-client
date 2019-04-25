@@ -1,6 +1,6 @@
-export interface repository{
+export interface Repository{
     name:string;
     url:string;
     description:string;
-    dateCreated:Date;
+    createdAt:string;
 }
