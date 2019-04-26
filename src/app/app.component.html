@@ -8,7 +8,7 @@
       <label for="gihubUserNameInput">GitHub user: </label>
       <input type="text" id="gihubUserNameInput" placeholder="GitHub user" formControlName="gitHubUser" required>
     </div>
-    <button type="submit" class="btn btn-primary mt-2">show repos</button>
+    <button type="submit" (click)="showRepos()"  class="btn btn-primary mt-2">show repos</button>
   </form>
 </div>
 <div class="alert alert-danger text-center" role="alert" *ngIf="hasErrors" id="alert">

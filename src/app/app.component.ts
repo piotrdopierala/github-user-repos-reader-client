@@ -12,7 +12,7 @@ export class AppComponent {
   title = 'GitHub repositories reader';
   userFrom: FormGroup;
   hasErrors: boolean = false;
-  repositories : Repository[];
+  repositories: Repository[];
 
   constructor(private repositoryReaderServcie: RepoReaderService) {
   }
@@ -20,17 +20,22 @@ export class AppComponent {
   ngOnInit() {
     this.userFrom = new FormGroup({
       gitHubUser: new FormControl('')
-    });
-    this.getRepositoriesList();
+    });    
   }
 
-  getRepositoriesList() {
-    console.log('in getRepositoriesList ...')
-    this.hasErrors=false;
-    this.repositoryReaderServcie.getRepositories('piotrdopierala')
-      .subscribe(value => {        
+  showRepos() {    
+    this.repositories = null;
+    let gitHubUser:string = this.userFrom.value["gitHubUser"];
+    this.getRepositoriesList(gitHubUser);
+  }
+
+  getRepositoriesList(gitHubUser:string) {
+    this.hasErrors = false;
+    this.repositoryReaderServcie.getRepositories(gitHubUser)
+      .subscribe(value => {
         this.repositories = value;
+        console.log(value);
       }, err => this.hasErrors = true
-      );      
+      );
   }
 }

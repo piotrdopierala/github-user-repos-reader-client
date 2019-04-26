@@ -4,9 +4,10 @@
       <ul>
         <li *ngFor="let repo of repositories; let i=index">
           <div class="text-left">
-            <a  target="_blank" href="{{repo.url}}">{{repo.name}}</a><br>
-            {{repo.description}}<br>
-            {{repo.createdAt | date:'medium'}}<br>
+            <a  target="_blank" href="{{repo.url}}">{{repo.name}}</a>, created at {{repo.createdAt | date:'medium'}}<br>
+            {{repo.description}}
+            <i *ngIf="repo.description == null">no description available</i><br>
+            <br>
           </div>
         </li>
       </ul>
