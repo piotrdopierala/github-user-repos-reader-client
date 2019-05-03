@@ -8,17 +8,18 @@ import { Observable } from 'rxjs';
 })
 export class RepoReaderService {
   private apiUrl: string = environment.apiUrl;
-  offset = new Date().getTimezoneOffset();
+  offset:number = (-1)*new Date().getTimezoneOffset();
 
   constructor(private http: HttpClient) { }
 
   public getRepositories(user): Observable<any> {
 
-    let req_headers = new HttpHeaders();
-    req_headers.set('userTimeZone', this.offset.toString());
+    let req_headers : HttpHeaders = new HttpHeaders()
+      .set('clientTimeZoneOffset', this.offset.toString());
 
+    console.log(req_headers.keys());
     return this.http.get(`${this.apiUrl}/api/v1/getRepos/${user}`,
-      { headers: req_headers }
+      { headers: req_headers}  
     );
 
   };
