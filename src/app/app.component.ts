@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RepoReaderService } from './services/repo-reader.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Repository } from './models/Repository';
+import { Repository } from './models/repository';
 
 @Component({
   selector: 'app-root',
