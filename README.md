@@ -1,3 +1,10 @@
+Application deployed at:
+
+https://repo-reader-client.herokuapp.com/
+
+Feel free to test.
+
+
 # RepoReaderClient
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
