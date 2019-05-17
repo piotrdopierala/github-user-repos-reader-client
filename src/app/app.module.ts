@@ -10,7 +10,7 @@ import { RepositoriesListComponent } from './repositories-list/repositories-list
 @NgModule({
   declarations: [
     AppComponent,
-    RepositoriesListComponent
+    RepositoriesListComponent,
   ],
   imports: [
     BrowserModule,
